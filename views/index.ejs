@@ -1,41 +1,156 @@
 <html>
 <header>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- Include the CSS that styles the charts. -->
+    <link rel="stylesheet" href="https://ga-dev-tools.appspot.com/public/css/chartjs-visualizations.css">
     <title> Data Analysis </title>
 </header>
 
 <body>
     <div style="margin-top:5%" >
-        <center> <h1> Result </h1> </center>
-        <hr>
-            <div class="row">
+<center>
+    <h1> Report of the Dumex digital event </h1>
+</center>
+<hr>
+<div class="row">
 
-                <div class="col-md-4">
-                 
-                    <center><h2> Digital 101 </h2></center>
-                    <center><h3>
-                        <%= data1 %>
-                    </h3></center>
-              
-                </div>
-                <div class="col-md-4">
-     
-                    <center><h2> Digital 201 </h2></center>
-                    <center><h3> <%= data2 %> </h3></center>
-        
-                </div>
-                <div class="col-md-4">
-                 
-                    <center><h2> Digital 301 </h2></center>
-                    <center><h3> <%= data3 %> </h3></center>
-                
-                </div>
-             
-            </div>
-            <hr>
+    <div class="col-md-4">
+
+        <center>
+            <h2> Digital 101 </h2>
+        </center>
+        <center>
+            <h3>
+                <%= data1 %>
+            </h3>
+        </center>
+
+    </div>
+    <div class="col-md-4">
+
+        <center>
+            <h2> Digital 201 </h2>
+        </center>
+        <center>
+            <h3>
+                <%= data2 %>
+            </h3>
+        </center>
+
+    </div>
+    <div class="col-md-4">
+
+        <center>
+            <h2> Digital 301 </h2>
+        </center>
+        <center>
+            <h3>
+                <%= data3 %>
+            </h3>
+        </center>
+
     </div>
 
+</div>
+<hr>
+
+<center> <h1> Bar chart </h1> </center>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <canvas id="myChart" height='100px'></canvas>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<br><br>
+<center> <h1> Pie chart </h1> </center>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <canvas id="doughnutChart" height="100px"></canvas>
+    </div>
+    <div class="col-md-1"></div>
+
+</div>
+
+</div>
+
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+<script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Digital 101", "Digital 201", "Digital 301"],
+            datasets: [{
+                label: ['Type of Digital'],
+                data: [<%= data1 %>, <%= data2 %>,<%= data3 %>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    var total = <%= data1 %> + <%= data2 %> + <%= data3 %> ;
+    alert(total);
+    var ctx2 = document.getElementById("doughnutChart");
+    var DoughnutChart = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'Digital 101',
+                'Digital 201',
+                'Digital 301'
+            ],
+            datasets: [
+                {
+                    data: [<%= data1 %>, <%= data2 %> ,<%= data3 %> ],
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ]
+                }
+            ]
+        },
+        animation: {
+            animateScale: true
+        }
+    });
+</script>
+
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
 </html>
