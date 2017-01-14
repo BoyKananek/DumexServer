@@ -13,7 +13,7 @@ var htmlRouter = require('./app/routers/htmlRouter');
 
 
 var config = require('./config/database.js');
-var port = 3000 || process.env.PORT;
+var port =  process.env.PORT || 3000;
 
 //setting database
 mongoose.connect(config.url);
