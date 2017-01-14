@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Data = require('../models/data');
 
-router.get('/save', function (req, res) {
+router.post('/save', function (req, res) {
     console.log('Requested');
     var type = req.body.type;
     var newData = new Data();
