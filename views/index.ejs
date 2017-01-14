@@ -116,7 +116,10 @@
         }
     });
     var total = <%= data1 %> + <%= data2 %> + <%= data3 %> ;
-    alert(total);
+    var percent1 = (<%= data1 %> / total ) * 100 ;
+    var percent2 = (<%= data2 %> / total ) * 100 ;
+    var percent3 = (<%= data3 %> / total ) * 100 ;
+    
     var ctx2 = document.getElementById("doughnutChart");
     var DoughnutChart = new Chart(ctx2, {
         type: 'doughnut',
@@ -128,7 +131,7 @@
             ],
             datasets: [
                 {
-                    data: [<%= data1 %>, <%= data2 %> ,<%= data3 %> ],
+                    data: [percent1.toFixed(2), percent2.toFixed(2),percent3.toFixed(2) ],
                     backgroundColor: [
                         "#FF6384",
                         "#36A2EB",
