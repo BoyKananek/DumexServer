@@ -19,8 +19,5 @@ router.post('/save', function (req, res) {
     })
 });
 
-router.get('/getData',function(req,res){
-    Data.find({})
-})
 
 module.exports = router;
