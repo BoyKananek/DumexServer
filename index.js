@@ -10,7 +10,7 @@ var app = new express();
 //import router 
 var apiRouter = require('./app/routers/apiRouter');
 var htmlRouter = require('./app/routers/htmlRouter');
-var authRouter = require('./app/routers/authRouter');
+
 
 var config = require('./config/database.js');
 var port = 3000 || process.env.PORT;
